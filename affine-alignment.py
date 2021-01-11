@@ -41,8 +41,8 @@ class AlignmentProblem:
         x = np.linspace(1, self.a1.shape[2], self.a1.shape[2])
         y = np.linspace(1, self.a1.shape[1], self.a1.shape[1])
         z = np.linspace(1, self.a1.shape[0], self.a1.shape[0])
-        new_z = np.linspace(1, self.a1.shape[0], 2.5 * self.a1.shape[0])
-        self.ext_z = int(50-1.25 * self.a1.shape[0])
+        new_z = np.linspace(1, self.a1.shape[0], int(2.5 * self.a1.shape[0]))
+        self.ext_z = int(50 - 1.25 * self.a1.shape[0])
 
         grid = np.array(np.meshgrid(new_z, y, x, indexing='ij'))
         grid = np.moveaxis(grid, 0, -1)
@@ -144,9 +144,9 @@ def parse_args():
 
 
 def main():
-    nThread=12
-    nTemp=10
-    tMax=30.0
+    nThread = 12
+    nTemp = 10
+    tMax = 30.0
     args = parse_args()
     prob = AlignmentProblem(args.input_file1, args.input_file2)
 
@@ -208,7 +208,7 @@ def main():
     np.savetxt(name + "_affine_matrix.txt", prob.affine_matrix)
     np.savetxt(name + "_champion.txt", prob.params)
 
-    #TZCYXS order
+    # TZCYXS order
     tiff.imwrite(args.output_file, trans_out[None, :, None, :, :].astype(np.float32), imagej=True)
     nome_org = os.path.basename(args.input_file1).split(".")[-2]+"_REF.tiff"
     tiff.imwrite(nome_org, ref_out[None, :, None, :, :].astype(np.float32), imagej=True)
