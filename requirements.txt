@@ -7,5 +7,6 @@
 cloudpickle==1.6.0        # via pygmo
 numpy==1.19.4             # via -r requirements.in, pygmo, scipy, tifffile
 pygmo==2.16.0             # via -r requirements.in
+pysimplegui==4.33.0       # via -r requirements.in
 scipy==1.5.4              # via -r requirements.in
 tifffile==2020.12.8       # via -r requirements.in
